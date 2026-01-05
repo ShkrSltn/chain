@@ -1,0 +1,40 @@
+<div class="chain-list-container">
+  <div class="header">
+    <h1>Voronoi Time Map</h1>
+    <p class="subtitle">Every day, a small repetition you make connects one point on the map to another</p>
+    <a routerLink="/create" class="create-button">+ Create New Chain</a>
+  </div>
+
+  @if (chains().length === 0) {
+    <div class="empty-state">
+      <p>No chains yet. Create your first chain to get started!</p>
+    </div>
+  } @else {
+    <div class="chains-grid">
+      @for (chain of chains(); track chain.id) {
+        <div class="chain-card" [routerLink]="['/chain', chain.id]">
+          <div class="chain-header">
+            <h2>{{ chain.name }}</h2>
+            <button
+              class="delete-button"
+              (click)="deleteChain(chain.id, $event)"
+              type="button"
+            >
+              ×
+            </button>
+          </div>
+          @if (chain.goal) {
+            <p class="chain-goal">Goal: {{ chain.goal }}</p>
+          }
+          @if (chain.description) {
+            <p class="chain-description">{{ chain.description }}</p>
+          }
+          <div class="chain-stats">
+            <span>{{ getStatsText(chain) }}</span>
+          </div>
+          <div class="chain-color" [style.background-color]="chain.color"></div>
+        </div>
+      }
+    </div>
+  }
+</div>

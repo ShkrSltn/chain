@@ -1,0 +1,39 @@
+@if (chain()) {
+  <div class="chain-detail-container">
+    <div class="header-section">
+      <a routerLink="/" class="back-link">← Back to Chains</a>
+      <h1>{{ chain()!.name }}</h1>
+      @if (chain()!.goal) {
+        <p class="goal-text">My Goal: {{ chain()!.goal }}</p>
+      }
+      @if (chain()!.description) {
+        <p class="description-text">{{ chain()!.description }}</p>
+      }
+      <div class="stats">
+        <span>{{ stats().completed }} / {{ stats().total }} days completed</span>
+      </div>
+    </div>
+
+    <div class="months-grid">
+      @for (month of months; track month) {
+        <app-month-voronoi
+          [chainId]="chainId"
+          [year]="currentYear"
+          [month]="month"
+          [width]="300"
+          [height]="300"
+        />
+      }
+    </div>
+
+    <div class="footer-text">
+      <p class="main-text">Break the Chain</p>
+      <p class="sub-text">Set a goal for yourself and connect the dots at every step</p>
+    </div>
+  </div>
+} @else {
+  <div class="not-found">
+    <p>Chain not found</p>
+    <a routerLink="/">Go back to chains</a>
+  </div>
+}

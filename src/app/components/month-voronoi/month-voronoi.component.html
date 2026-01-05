@@ -1,0 +1,46 @@
+<div class="month-container">
+  <svg [attr.width]="width" [attr.height]="height" [attr.viewBox]="'0 0 ' + width + ' ' + height" class="voronoi-svg">
+    @for (cell of cells(); track cell.id) {
+      <g class="voronoi-cell">
+        @if (!cell.isMonthLabel) {
+          <path
+            [attr.d]="cell.path"
+            [class]="getCellClass(cell)"
+            (click)="toggleDay(cell)"
+            [attr.fill]="cell.day.completed ? '#5B9BD5' : '#EEEEEE'"
+            stroke="none"
+          />
+        }
+        @if (cell.isMonthLabel) {
+          <text
+            [attr.x]="cell.x"
+            [attr.y]="cell.y"
+            class="month-label-text"
+            fill="#555555"
+            text-anchor="middle"
+            dominant-baseline="middle"
+            font-size="18"
+            font-weight="700"
+            style="text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.65;"
+          >
+            {{ getMonthNameShort() }}
+          </text>
+        } @else {
+          <text
+            [attr.x]="cell.x"
+            [attr.y]="cell.y"
+            class="day-number"
+            [attr.fill]="cell.day.completed ? '#FFFFFF' : '#666666'"
+            text-anchor="middle"
+            dominant-baseline="middle"
+            font-size="12"
+            font-weight="600"
+            (click)="toggleDay(cell)"
+          >
+            {{ cell.day.date.getDate() }}
+          </text>
+        }
+      </g>
+    }
+  </svg>
+</div>

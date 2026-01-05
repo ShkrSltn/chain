@@ -1,0 +1,53 @@
+.month-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.voronoi-svg {
+  border: 2px solid #E0E0E0;
+  border-radius: 12px;
+  background: #FFFFFF;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.voronoi-cell {
+  cursor: pointer;
+}
+
+.voronoi-svg path {
+  transition: fill 0.25s ease, opacity 0.25s ease;
+}
+
+.voronoi-svg .voronoi-cell:hover path {
+  opacity: 0.8;
+}
+
+.voronoi-svg path.completed {
+  cursor: pointer;
+}
+
+.voronoi-svg path.pending {
+  cursor: pointer;
+}
+
+.day-number {
+  pointer-events: none;
+  user-select: none;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.month-label-text {
+  pointer-events: none;
+  user-select: none;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.voronoi-svg .month-label {
+  cursor: default;
+}
+
+.voronoi-svg .month-label:hover path {
+  opacity: 1;
+}
